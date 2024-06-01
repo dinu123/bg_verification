@@ -1,0 +1,32 @@
+{
+  "name": "bg_verification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dinu123/bg_verification.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dinu123/bg_verification/issues"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.1.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.9.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.1"
+  },
+  "homepage": "https://github.com/dinu123/bg_verification#readme"
+}
