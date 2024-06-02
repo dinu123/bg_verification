@@ -1,62 +1,41 @@
-const User = require('./user'); // Ensure the correct path
+const User = require("./user"); // Ensure the correct path
+
+const REST_API = require("../../util/api-util");
 
 // Define the createUser controller function
 const createUser = async (req, res) => {
-  try {
-    const newUser = await User.create(req.body);
-    res.status(201).json(newUser);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const response = await REST_API._add(req, res, User);
+  return response;
 };
 
 const getUsers = async (req, res) => {
-  try {
-    const userList = await User.findAll();
-    res.status(201).json(userList);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const response = await REST_API._getAll(req, res, User);
+  return response;
 };
 
 const getUserById = async (req, res) => {
-  const {userId} = req.params; 
-   console.log(userId);
-  try {
-    const user = await User.findByPk(userId);
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const { userId } = req.params;
+  const response = await REST_API._getDataListById(
+    req,
+    res,
+    User,
+    "id",
+    userId
+  );
+  return response;
 };
 
 const updateUser = async (req, res) => {
-  try {
-    const newUser = await User.update(req.body, {
-      where: {
-        id: req.body.id,
-      },
-    },);
-    res.status(201).json(newUser);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const response = await REST_API._update(req, res, User);
+  return response;
 };
 
 const deleteUser = async (req, res) => {
-  try {
-    const response = await User.destroy({
-      where: {
-        id: req.body.id,
-      },
-    },);
-    res.status(201).json(response);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const response = await REST_API._delete(req, res, User);
+  return response;
 };
 
-exports.createUser = createUser
+exports.createUser = createUser;
 exports.getUsers = getUsers;
 exports.getUserById = getUserById;
 exports.updateUser = updateUser;

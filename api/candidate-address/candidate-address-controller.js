@@ -1,62 +1,40 @@
-const CandidteAddress = require('./candidate-address'); // Ensure the correct path
+const CandidteAddress = require("./candidate-address"); // Ensure the correct path
+const REST_API = require("../../util/api-util");
 
 // Define the createCandidate controller function
 const createCandidateAddress = async (req, res) => {
-  try {
-    const response = await CandidteAddress.create(req.body);
-    res.status(201).json(response);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
+  const response = await REST_API._add(req, res, CandidteAddress);
+  return response;
 };
 
 const getCandidteAddressList = async (req, res) => {
-    try {
-      const response = await CandidteAddress.findAll();
-      res.status(201).json(response);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
+  const response = await REST_API._getAll(req, res, CandidteAddress);
+  return response;
+};
 
-  const getAddressByCandidteId = async (req, res) => {
-    const {candidateId} = req.params; 
-    try {
-      const response = await CandidteAddress.findAll({ where: { candidate_id: candidateId } });;
-      res.status(201).json(response);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
-  const updateCandidteAddress = async (req, res) => {
-    try {
-      const response = await CandidteAddress.update(req.body, {
-        where: {
-          id: req.body.id,
-        },
-      },);
-      res.status(201).json(response);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
+const getAddressByCandidteId = async (req, res) => {
+  const { candidateId } = req.params;
+  const response = await REST_API._getDataListById(
+    req,
+    res,
+    CandidteAddress,
+    "candidate_id",
+    candidateId
+  );
+  return response;
+};
+const updateCandidteAddress = async (req, res) => {
+  const response = await REST_API._update(req, res, CandidteAddress);
+  return response;
+};
 
-  const deleteCandidateAddress = async (req, res) => {
-    try {
-      const response = await CandidteAddress.destroy({
-        where: {
-          id: req.body.id,
-        },
-      },);
-      res.status(201).json(response);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
-  
+const deleteCandidateAddress = async (req, res) => {
+  const response = await REST_API._delete(req, res, CandidteAddress);
+  return response;
+};
+
 exports.createCandidateAddress = createCandidateAddress;
 exports.getCandidteAddressList = getCandidteAddressList;
 exports.getAddressByCandidteId = getAddressByCandidteId;
 exports.updateCandidteAddress = updateCandidteAddress;
 exports.deleteCandidateAddress = deleteCandidateAddress;
-
