@@ -12,6 +12,12 @@ const candidateEductionRouter = require('./api/candidate-eduction/candidate-educ
 const candidateReferenceRouter = require('./api/candidate-reference/candidate-reference-route');
 const candidateVerificationRouter = require('./api/candidate-verification/candidate-verification-route');
 
+const clientRouter = require('./api/client/client-route');
+
+const FeatureRouter = require('./api/feature/feature-route');
+
+
+
 const app = express();
 const port = 8000;
 app.use(cors());
@@ -26,13 +32,25 @@ sequelize.sync()
   });
 
 app.use('/users', userRouter); 
-app.use('/candidte', candidateRouter);
-app.use('/candidte-address', candidateAddressRouter);
-app.use('/candidte-cibil', candidateCibilRouter);
-app.use('/candidte-docs', candidateDocsRouter);
-app.use('/candidte-eduction', candidateEductionRouter);
-app.use('/candidte-reference', candidateReferenceRouter);
-app.use('/candidte-verrifiction', candidateVerificationRouter);
+
+// Candidate Route
+app.use('/candidate', candidateRouter);
+app.use('/candidate-address', candidateAddressRouter);
+app.use('/candidate-cibil', candidateCibilRouter);
+app.use('/candidate-docs', candidateDocsRouter);
+app.use('/candidate-eduction', candidateEductionRouter);
+app.use('/candidate-reference', candidateReferenceRouter);
+app.use('/candidate-verrifiction', candidateVerificationRouter);
+
+//Client Route
+
+app.use('/client', clientRouter);
+
+//Feture Route
+
+app.use('/feature', FeatureRouter);
+
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

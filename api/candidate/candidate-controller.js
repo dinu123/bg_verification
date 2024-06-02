@@ -29,7 +29,7 @@ const updateCandidte = async (req, res) => {
 };
 
 const deleteCandidate = async (req, res) => {
-  const response = await REST_API._delete(req, res, CandidteAddress);
+  const response = await REST_API._delete(req, res, Candidte);
   return response;
 };
 
