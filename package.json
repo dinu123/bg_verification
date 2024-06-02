@@ -2,7 +2,7 @@
   "name": "bg_verification",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -23,7 +23,9 @@
     "express": "^4.19.2",
     "express-validator": "^7.1.0",
     "mysql": "^2.18.1",
-    "mysql2": "^3.9.8",
+    "mysql2": "^3.10.0",
+    "sequelize": "^6.37.3",
+    "tedious": "^18.2.0",
     "winston": "^3.13.0"
   },
   "devDependencies": {
