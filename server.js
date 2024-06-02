@@ -9,6 +9,8 @@ const candidateAddressRouter = require('./api/candidate-address/candidate-addres
 const candidateCibilRouter = require('./api/candidate-cibil/candidate-cibil-route');
 const candidateDocsRouter = require('./api/candidate-docs/candidate-docs-route');
 const candidateEductionRouter = require('./api/candidate-eduction/candidate-eduction-route');
+const candidateReferenceRouter = require('./api/candidate-reference/candidate-reference-route');
+const candidateVerificationRouter = require('./api/candidate-verification/candidate-verification-route');
 
 const app = express();
 const port = 8000;
@@ -29,7 +31,8 @@ app.use('/candidte-address', candidateAddressRouter);
 app.use('/candidte-cibil', candidateCibilRouter);
 app.use('/candidte-docs', candidateDocsRouter);
 app.use('/candidte-eduction', candidateEductionRouter);
-app.use('/candidte-reference', candidateEductionRouter);
+app.use('/candidte-reference', candidateReferenceRouter);
+app.use('/candidte-verrifiction', candidateVerificationRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
