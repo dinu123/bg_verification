@@ -16,6 +16,8 @@ const clientRouter = require('./api/client/client-route');
 
 const FeatureRouter = require('./api/feature/feature-route');
 
+const InternalTeamRouter = require('./api/internal-team/internal_team-route');
+
 
 
 const app = express();
@@ -50,7 +52,7 @@ app.use('/client', clientRouter);
 
 app.use('/feature', FeatureRouter);
 
-
+app.use('/internal-team', InternalTeamRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
