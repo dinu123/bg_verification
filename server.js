@@ -18,11 +18,8 @@ const FeatureRouter = require('./api/feature/feature-route');
 
 const InternalTeamRouter = require('./api/internal-team/internal_team-route');
 
-const stateRouter = require('./api/state/state.route');
-const districRouter = require('./api/district/district.route');
 
 
- 
 const app = express();
 const port = 9000;
 app.use(cors());
@@ -38,11 +35,6 @@ sequelize.sync()
 
 app.use('/users', userRouter); 
 
-//master Data
-
-app.use('/state',stateRouter)
-
-app.use('/distric',districRouter)
 // Candidate Route
 app.use('/candidate', candidateRouter);
 app.use('/candidate-address', candidateAddressRouter);
