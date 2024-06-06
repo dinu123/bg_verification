@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const mysql = require('mysql2');
 
-const sequelize = new Sequelize('bgverification', 'root', 'root', {
+const sequelize = new Sequelize('bgverification', 'bgverification', 'bgverification!@#45', {
   host: 'localhost',
   dialect: 'mysql',
   dialectModule: require('mysql2'),
