@@ -1,4 +1,7 @@
 const User = require("./user"); // Ensure the correct path
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const SECRET_KEY = 'bgverification'; 
 
 const REST_API = require("../../util/api-util");
 
@@ -34,6 +37,27 @@ const deleteUser = async (req, res) => {
   const response = await REST_API._delete(req, res, User);
   return response;
 };
+
+
+exports.verifyUser = async (username, password) => {
+  const user = await User.findOne({ where: { username: username } });
+  if (!user) return null;
+
+  // Assuming you have a method to compare the hashed password
+  const isMatch = crypto.timingSafeEqual(Buffer.from(user.password), Buffer.from(password)); // Update this line as per your hashing mechanism
+  if (!isMatch) return null;
+
+  const token = exports.generateToken(user);
+
+  // Save the token in the user table
+  await user.update({ token: token });
+  return user;
+};
+
+exports.generateToken = (user) => {
+  return jwt.sign({ id: user.id, username: user.username }, SECRET_KEY, { expiresIn: '1h' });
+};
+
 
 exports.createUser = createUser;
 exports.getUsers = getUsers;

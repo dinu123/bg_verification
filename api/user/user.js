@@ -24,6 +24,10 @@ User.init(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    token: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     updated_by: {
       type: DataTypes.INTEGER,
       allowNull: true,
