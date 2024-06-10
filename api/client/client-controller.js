@@ -4,12 +4,12 @@ const REST_API = require("../../util/api-util");
 // Define the createClient controller function
 const createClient = async (req, res) => {
   const response = await REST_API._add(req, res, Client);
-  return response;
+  res.status(200).json(response);
 };
 
 const getClientList = async (req, res) => {
   const response = await REST_API._getAll(req, res, Client);
-  return response;
+  res.status(200).json(response);
 };
 
 const getClinetById = async (req, res) => {
@@ -21,16 +21,16 @@ const getClinetById = async (req, res) => {
     "id",
     ClientId
   );
-  return response;
+  res.status(201).json(response);
 };
 const updateClient = async (req, res) => {
   const response = await REST_API._update(req, res, Client);
-  return response;
+  res.status(201).json(response);
 };
 
 const deleteClient = async (req, res) => {
   const response = await REST_API._delete(req, res, Client);
-  return response;
+  res.status(201).json(response);
 };
 
 exports.createClient = createClient;

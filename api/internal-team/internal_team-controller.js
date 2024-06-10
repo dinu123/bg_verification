@@ -4,12 +4,12 @@ const REST_API = require("../../util/api-util");
 // Define the createClient controller function
 const createInternalTeam = async (req, res) => {
   const response = await REST_API._add(req, res, InternalTeam);
-  return response;
+  res.status(200).json(response);
 };
 
 const getInternalTeamList = async (req, res) => {
   const response = await REST_API._getAll(req, res, InternalTeam);
-  return response;
+  res.status(200).json(response);
 };
 
 const getInternalTeamById = async (req, res) => {
@@ -21,16 +21,16 @@ const getInternalTeamById = async (req, res) => {
     "id",
     internalTeamId
   );
-  return response;
+  res.status(201).json(response);
 };
 const updateInternalTeam = async (req, res) => {
   const response = await REST_API._update(req, res, InternalTeam);
-  return response;
+  res.status(201).json(response);
 };
 
 const deleteInternalTeam = async (req, res) => {
   const response = await REST_API._delete(req, res, InternalTeam);
-  return response;
+  res.status(201).json(response);
 };
 
 exports.createInternalTeam = createInternalTeam;

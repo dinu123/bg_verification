@@ -8,12 +8,12 @@ const REST_API = require("../../util/api-util");
 // Define the createUser controller function
 const createUser = async (req, res) => {
   const response = await REST_API._add(req, res, User);
-  return response;
+  res.status(200).json(response);
 };
 
 const getUsers = async (req, res) => {
   const response = await REST_API._getAll(req, res, User);
-  return response;
+  res.status(200).json(response);
 };
 
 const getUserById = async (req, res) => {
@@ -25,17 +25,17 @@ const getUserById = async (req, res) => {
     "id",
     userId
   );
-  return response;
+  res.status(201).json(response);
 };
 
 const updateUser = async (req, res) => {
   const response = await REST_API._update(req, res, User);
-  return response;
+  res.status(201).json(response);
 };
 
 const deleteUser = async (req, res) => {
   const response = await REST_API._delete(req, res, User);
-  return response;
+  res.status(201).json(response);
 };
 
 

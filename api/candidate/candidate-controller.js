@@ -1,15 +1,22 @@
 const Candidte = require("./candidte"); // Ensure the correct path
+const CandidateAddress = require("../candidate-address/candidate-address");
 const REST_API = require("../../util/api-util");
 
 // Define the createCandidate controller function
 const createCandidate = async (req, res) => {
   const response = await REST_API._add(req, res, Candidte);
-  return response;
+  res.status(200).json(response);
 };
 
 const getCandidteList = async (req, res) => {
   const response = await REST_API._getAll(req, res, Candidte);
-  return response;
+  console.log("Response" + response)
+  if(response) {
+    console.log("Dinesh");
+  } else {
+    console.log("Kallani");
+  }
+  res.status(200).json(response);
 };
 
 const getCandidteById = async (req, res) => {
@@ -21,16 +28,16 @@ const getCandidteById = async (req, res) => {
     "id",
     candidateId
   );
-  return response;
+  res.status(201).json(response);
 };
 const updateCandidte = async (req, res) => {
   const response = await REST_API._update(req, res, Candidte);
-  return response;
+  res.status(201).json(response);
 };
 
 const deleteCandidate = async (req, res) => {
   const response = await REST_API._delete(req, res, Candidte);
-  return response;
+  res.status(201).json(response);
 };
 
 exports.createCandidate = createCandidate;

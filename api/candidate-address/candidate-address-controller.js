@@ -4,12 +4,12 @@ const REST_API = require("../../util/api-util");
 // Define the createCandidate controller function
 const createCandidateAddress = async (req, res) => {
   const response = await REST_API._add(req, res, CandidteAddress);
-  return response;
+  res.status(200).json(response);
 };
 
 const getCandidteAddressList = async (req, res) => {
   const response = await REST_API._getAll(req, res, CandidteAddress);
-  return response;
+  res.status(200).json(response);
 };
 
 const getAddressByCandidteId = async (req, res) => {
@@ -21,16 +21,16 @@ const getAddressByCandidteId = async (req, res) => {
     "candidate_id",
     candidateId
   );
-  return response;
+  res.status(201).json(response);
 };
 const updateCandidteAddress = async (req, res) => {
   const response = await REST_API._update(req, res, CandidteAddress);
-  return response;
+  res.status(201).json(response);
 };
 
 const deleteCandidateAddress = async (req, res) => {
   const response = await REST_API._delete(req, res, CandidteAddress);
-  return response;
+  res.status(201).json(response);
 };
 
 exports.createCandidateAddress = createCandidateAddress;

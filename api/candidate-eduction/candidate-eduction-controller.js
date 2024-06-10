@@ -4,12 +4,12 @@ const REST_API = require("../../util/api-util");
 // Define the createCandidate controller function
 const createCandidateEduction = async (req, res) => {
   const response = await REST_API._add(req, res, CandidteEduction);
-  return response;
+  res.status(200).json(response);
 };
 
 const getCandidteListEduction = async (req, res) => {
   const response = await REST_API._getAll(req, res, CandidteEduction);
-  return response;
+  res.status(200).json(response);
 };
 
 const getEductionByCandidteId = async (req, res) => {
@@ -21,16 +21,16 @@ const getEductionByCandidteId = async (req, res) => {
     "candidate_id",
     candidateId
   );
-  return response;
+  res.status(201).json(response);
 };
 const updateCandidteEduction = async (req, res) => {
   const response = await REST_API._update(req, res, CandidteEduction);
-  return response;
+  res.status(201).json(response);
 };
 
 const deleteCandidateEduction = async (req, res) => {
   const response = await REST_API._delete(req, res, CandidteEduction);
-  return response;
+  res.status(201).json(response);
 };
 
 exports.createCandidateEduction = createCandidateEduction;

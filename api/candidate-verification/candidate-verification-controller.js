@@ -4,12 +4,12 @@ const REST_API = require("../../util/api-util");
 // Define the createCandidate controller function
 const createCandidateVerification = async (req, res) => {
   const response = await REST_API._add(req, res, CandidteVerification);
-  return response;
+  res.status(200).json(response);
 };
 
 const getCandidteListVerification = async (req, res) => {
   const response = await REST_API._getAll(req, res, CandidteVerification);
-  return response;
+  res.status(200).json(response);
 };
 
 const getVerificationByCandidteId = async (req, res) => {
@@ -21,16 +21,16 @@ const getVerificationByCandidteId = async (req, res) => {
     "candidate_id",
     candidateId
   );
-  return response;
+  res.status(201).json(response);
 };
 const updateCandidteVerification = async (req, res) => {
   const response = await REST_API._update(req, res, CandidteVerification);
-  return response;
+  res.status(201).json(response);
 };
 
 const deleteCandidateVerification = async (req, res) => {
   const response = await REST_API._delete(req, res, CandidteVerification);
-  return response;
+  res.status(201).json(response);
 };
 
 exports.createCandidateVerification = createCandidateVerification;

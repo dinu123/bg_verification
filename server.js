@@ -28,7 +28,7 @@ app.use(passport.initialize());
 const authenticate = (req, res, next) => {
   // Define paths to exclude from authentication
   const excludePaths = ['/users', '/users/login'];
-  const shouldExclude = excludePaths.some(path => req.path.startsWith(path) && (path === req.path || path === '/users/login' && req.method === 'POST'));
+  const shouldExclude = excludePaths.some(path => req.path.startsWith(path) && (path === req.path || path === '/users/login' || path === '/users' && req.method === 'POST'));
 
   if (shouldExclude) {
     return next();
