@@ -1,10 +1,21 @@
 const Candidte = require("./candidte"); // Ensure the correct path
 const CandidateAddress = require("../candidate-address/candidate-address");
 const REST_API = require("../../util/api-util");
+const mailer = require('../../config/mailer');
 
 // Define the createCandidate controller function
 const createCandidate = async (req, res) => {
-  const response = await REST_API._add(req, res, Candidte);
+  const info = await mailer.sendMail({
+    from: '<info@bgapi.restaurantapp.in>', // sender address
+    to: "dinesh.me2005@gmail.com", // list of receivers
+    subject: "Hello", // Subject line
+    text: "Hello world?", // plain text body
+    html: "<b>Hello world?</b>", // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  //const response = await REST_API._add(req, res, Candidte);
+
   res.status(200).json(response);
 };
 

@@ -1,8 +1,11 @@
+const logger = require('../config/logger');
+
 const _getAll = async (req, res, modalName) => {
   try {
     const response = await modalName.findAll();
   return response;
   } catch (error) {
+    logger.error(error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -15,6 +18,7 @@ const _getDataListById = async (req, res, modalName, fieldName, fieldValue) => {
     });
     return response;
   } catch (error) {
+    logger.error(error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -28,6 +32,7 @@ const _update = async (req, res, modalName) => {
     });
     return response;
   } catch (error) {
+    logger.error(error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -41,6 +46,7 @@ const _delete = async (req, res, modalName) => {
     });
     return response
   } catch (error) {
+    logger.error(error);
     res.status(500).json({ error: error.message });
   }
 };
@@ -48,8 +54,10 @@ const _delete = async (req, res, modalName) => {
 const _add = async (req, res, modalName) => {
   try {
     const response = await modalName.create(req.body);
-   return response
+    console.log(response);
+   return response;
   } catch (error) {
+    logger.error(error);
     res.status(500).json({ error: error.message });
   }
 };

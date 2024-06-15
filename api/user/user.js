@@ -20,6 +20,10 @@ User.init(
       type: DataTypes.BOOLEAN,
       allowNull: true,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     created_by: {
       type: DataTypes.INTEGER,
       allowNull: true,
