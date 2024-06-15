@@ -42,13 +42,12 @@ const deleteUser = async (req, res) => {
 exports.verifyUser = async (username, password) => {
   const user = await User.findOne({ where: { username: username } });
   if (!user) return null;
-
+  
   // Assuming you have a method to compare the hashed password
   const isMatch = crypto.timingSafeEqual(Buffer.from(user.password), Buffer.from(password)); // Update this line as per your hashing mechanism
   if (!isMatch) return null;
 
   const token = exports.generateToken(user);
-
   // Save the token in the user table
   await user.update({ token: token });
   return user;

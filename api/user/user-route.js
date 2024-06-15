@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
     // Generate a token for the user (use your method to generate a token)
    
 
-    res.json({ token: user.token });
+    res.json({ token: user.token,user_role:user.user_role});
   } catch (error) {
     res.status(500).json({ message: 'Internal server error' });
   }
