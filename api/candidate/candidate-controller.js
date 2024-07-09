@@ -3,6 +3,8 @@ const CandidateAddress = require("../candidate-address/candidate-address");
 const REST_API = require("../../util/api-util");
 const mailer = require('../../config/mailer');
 const User = require("../user/user");
+const CandidteCibil = require("../candidate-cibil/candidte-cibil");
+const CandidteVerification = require("../candidate-verification/candidte-verification");
 
 
 // Define the createCandidate controller function
@@ -24,8 +26,12 @@ const createCandidate = async (req, res) => {
     if(userList.length > 0) {
       return res.status(200).json({msg:"user already Exist!!!",isError:'true'});
     }
-    const candidateResponse = await REST_API._add(req, res, Candidte);
-    const userResponse = await User.create({username:candidateEmail,password:req.body.mobile_no,user_role:3,email:candidateEmail});
+
+    const candidateResponse = await Candidte.create({...req.body,persent_completed:15});
+    const userResponse = await User.create({username:candidateEmail,password:req.body.mobile_no,user_role:3,email:candidateEmail,user_source_id:candidateResponse.id});
+    await CandidteVerification.create({status:0,candidate_id:candidateResponse.id, created_by:req.user.id,updated_by:req.user.id});
+    console.log(userResponse);
+    console.log("**********")
     if(Object.keys(userResponse).length > 0) {
       Candidte.update({user_id:userResponse.id}, {
         where: {
@@ -54,30 +60,29 @@ const createCandidate = async (req, res) => {
 };
 
 const getCandidteList = async (req, res) => {
-  const response = await REST_API._getAll(req, res, Candidte);
+  const response = await Candidte.findAll({
+    include: CandidateAddress
+  });
   if(req.user.user_role === 3) {
-    const candudateData = await Candidte.findAll({
+    const candidateData = await Candidte.findAll({
       where: { 'user_id': req.user.id },
     })
-    if(Object.keys(candudateData).length > 0) {
-      res.status(200).json(candudateData);
+    if(Object.keys(candidateData).length > 0) {
+      res.status(200).json(candidateData);
     } else {
       res.status(200).json(response);
     }
   } else {
+
     res.status(200).json(response);
   }
 };
 
 const getCandidteById = async (req, res) => {
   const { candidateId } = req.params;
-  const response = await REST_API._getDataListById(
-    req,
-    res,
-    Candidte,
-    "id",
-    candidateId
-  );
+  const response = await Candidte.findOne({
+    include: CandidateAddress
+  })
   res.status(201).json(response);
 };
 const updateCandidte = async (req, res) => {

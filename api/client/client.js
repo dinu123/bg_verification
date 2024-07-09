@@ -32,6 +32,10 @@ Client.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    process_list: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,

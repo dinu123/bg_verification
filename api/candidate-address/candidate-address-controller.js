@@ -1,9 +1,15 @@
 const CandidteAddress = require("./candidate-address"); // Ensure the correct path
 const REST_API = require("../../util/api-util");
+const Candidte = require("../candidate/candidte");
 
 // Define the createCandidate controller function
 const createCandidateAddress = async (req, res) => {
   const response = await REST_API._add(req, res, CandidteAddress);
+   /* await Candidte.update({persent_completed:30}, {
+    where: {
+      id: req.body.candidate_id,
+    },
+  }); */
   res.status(200).json(response);
 };
 

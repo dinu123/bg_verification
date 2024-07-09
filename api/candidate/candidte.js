@@ -1,5 +1,11 @@
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../../config/data-source"); // Import the sequelize instance
+const CandidteAddress = require("../candidate-address/candidate-address");
+const CandidateCIBL = require("../candidate-cibil/candidte-cibil");
+const CandidteDocs = require("../candidate-docs/candidte-docs");
+const CandidteEduction = require("../candidate-eduction/candidte-eduction");
+const CandidteReference = require("../candidate-reference/candidte-reference");
+const CandidteVerification = require("../candidate-verification/candidte-verification");
 
 class Candidte extends Model {}
 Candidte.init(
@@ -64,6 +70,10 @@ Candidte.init(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    process: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     created_by: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -87,5 +97,11 @@ Candidte.init(
     tableName: "candidate",
   }
 );
+Candidte.hasMany(CandidteAddress, {foreignKey:'candidate_id'});
+Candidte.hasMany(CandidateCIBL, {foreignKey:'candidate_id'});
+Candidte.hasMany(CandidteDocs, {foreignKey:'candidate_id'});
+Candidte.hasMany(CandidteEduction, {foreignKey:'candidate_id'});
+Candidte.hasMany(CandidteReference, {foreignKey:'candidate_id'});
+Candidte.hasMany(CandidteVerification, {foreignKey:'candidate_id'});
 
 module.exports = Candidte; // Use module.exports for consistency

@@ -8,6 +8,13 @@ router.put('/', ClientController.updateClient);
 
 router.get('/', ClientController.getClientList);
  router.get('/:ClientId', ClientController.getClinetById);
-router.delete('/', ClientController.deleteClient); 
+router.delete('/', ClientController.deleteClient);
+
+
+
+// Api Route
+
+router.get('/:id/candidates', ClientController.getCandidtes); 
+
 
 module.exports = router; // Export the router
